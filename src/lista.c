@@ -180,6 +180,31 @@ void lista_destroi(lista*l){
     }
     free(l);
 }
+no* lista_pega_elemento(lista* l, int pos){
+    if(l==NULL){
+        printf("Erro em pega_elemento: lista nula");
+        return NULL;
+    }
+    if (pos < 0){
+        pos += l->num_elementos;
+    }
+    if (pos <0 || pos >= l->num_elementos){
+        printf("Erro em pega_elemento: indice fora de alcance");
+        return NULL;
+    }
+    no* no_atual = l->primeiro;
+    int contador = 0;
+    while(no_atual != NULL){
+        if(contador == pos){
+            return no_atual;
+            break;
+        }
+        contador++;
+        no_atual=no_atual->prox;
+    }
+    printf("Erro inesperado em pega elemento");
+    return NULL;
+}
 
 void lista_testa() {
     lista* l = lista_cria();
@@ -203,7 +228,6 @@ void lista_testa() {
     float c = 3.14;
     void* ptrc = &c;
     no* no_float = no_cria(ptrc);
-
     lista_insere(l, no_float, 1);
     assert(l->num_elementos == 3);
     assert(l->primeiro == no_int);
@@ -224,6 +248,46 @@ void lista_testa() {
     assert(l->num_elementos == 5);
     assert(l->primeiro == no_int);
     assert(l->ultimo == no_beyond);
+
+    no* retrieved_0 = lista_pega_elemento(l, 0);
+    assert(retrieved_0 == no_int);
+    assert(*(int*)(retrieved_0->data) == a);
+
+    no* retrieved_1 = lista_pega_elemento(l, 1);
+    assert(retrieved_1 == no_float);
+    assert(*(float*)(retrieved_1->data) == c);
+
+    no* retrieved_2 = lista_pega_elemento(l, 2);
+    assert(retrieved_2 == no_char);
+    assert(*(char*)(retrieved_2->data) == b);
+
+    no* retrieved_3 = lista_pega_elemento(l, 3);
+    assert(retrieved_3 == no_negative);
+    assert(*(int*)(retrieved_3->data) == d);
+
+    no* retrieved_4 = lista_pega_elemento(l, 4);
+    assert(retrieved_4 == no_beyond);
+    assert(*(int*)(retrieved_4->data) == e);
+
+    no* retrieved_neg_1 = lista_pega_elemento(l, -1);
+    assert(retrieved_neg_1 == no_beyond);
+    assert(*(int*)(retrieved_neg_1->data) == e);
+
+    no* retrieved_neg_2 = lista_pega_elemento(l, -2);
+    assert(retrieved_neg_2 == no_negative);
+    assert(*(int*)(retrieved_neg_2->data) == d);
+
+    no* retrieved_neg_3 = lista_pega_elemento(l, -3);
+    assert(retrieved_neg_3 == no_char);
+    assert(*(char*)(retrieved_neg_3->data) == b);
+
+    no* retrieved_neg_4 = lista_pega_elemento(l, -4);
+    assert(retrieved_neg_4 == no_float);
+    assert(*(float*)(retrieved_neg_4->data) == c);
+
+    no* retrieved_neg_5 = lista_pega_elemento(l, -5);
+    assert(retrieved_neg_5 == no_int);
+    assert(*(int*)(retrieved_neg_5->data) == a);
 
     void* removed_data = lista_remove(l, 0);
     assert(removed_data == ptra);

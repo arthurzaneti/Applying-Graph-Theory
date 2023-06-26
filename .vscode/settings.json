@@ -1,0 +1,10 @@
+{
+    "C_Cpp.errorSquiggles": "enabled",
+    "files.associations": {
+        "grafo.h": "c",
+        "arq_manager.h": "c",
+        "lista.h": "c",
+        "stdio.h": "c",
+        "errno.h": "c"
+    }
+}

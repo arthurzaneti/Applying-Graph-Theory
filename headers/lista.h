@@ -29,6 +29,7 @@ void* lista_remove_fim_aux(lista*l);
 void* lista_remove(lista *l, int pos);
 void lista_destroi(lista *l);
 bool verifica_remoção_aux(lista*l, int pos);
+no* lista_pega_elemento(lista* l, int pos);
 void lista_testa();
 
 #endif
