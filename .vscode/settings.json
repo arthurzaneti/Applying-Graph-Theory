@@ -5,6 +5,7 @@
         "arq_manager.h": "c",
         "lista.h": "c",
         "stdio.h": "c",
-        "errno.h": "c"
+        "errno.h": "c",
+        "numbers": "c"
     }
 }

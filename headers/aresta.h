@@ -7,6 +7,8 @@ typedef struct _aresta{
     float peso;
 }aresta;
 
+
+
 aresta *aresta_cria(int inicio, int fim, float peso);
 void aresta_destroi(aresta* a);
 void aresta_testa();

@@ -10,7 +10,6 @@ typedef struct _local {
     double latitude;
     double longitude;
     char descricao[TAMANHO_MAX_LINHA];
-    int indice;
 }local;
 
 lista* le_locais();

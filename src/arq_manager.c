@@ -11,7 +11,6 @@ static local* local_cria(){
         return NULL;
     }
     return l;
-
 }
 
 lista* le_locais() {
@@ -27,7 +26,6 @@ lista* le_locais() {
     lista* locais = lista_cria();
 
     bool primeira_iteracao = true;
-    int contador = 0;
     while (fgets(buffer, sizeof(buffer), locais_file)) {
 
         if(primeira_iteracao){
@@ -36,13 +34,11 @@ lista* le_locais() {
         }
         local* novo_local = local_cria();
         sscanf(buffer, "%[^,],%lf,%lf,%[^,\n]", novo_local->nome, &novo_local->latitude, &novo_local->longitude, novo_local->descricao);
-        novo_local->indice = contador++;
         lista_insere(locais, no_cria((void*)novo_local), -1);
     }
     fclose(locais_file);
     return locais;
 }
-
 char** tabela_conversao_cria(lista* locais){
     char** tabela = malloc(sizeof(char*)* NUM_ELEMENTOS);
     if(tabela == NULL){
@@ -66,14 +62,5 @@ char** tabela_conversao_cria(lista* locais){
     return tabela;
 }
 
-lista* converte_locais_int(lista* locais){
-    if (locais==NULL){
-        printf("Erro em converte_locais_int: lista nula");
-        return NULL;
-    }
-    assert(locais->num_elementos !=0);
-    no* no_atual = locais->primeiro;
-    for(int i = 0; i < locais->num_elementos; i++){
-        ((local*)(no_atual->data))->nome = i;
-    }
-}
+
+

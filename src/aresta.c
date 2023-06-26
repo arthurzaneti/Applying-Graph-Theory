@@ -11,7 +11,7 @@ aresta *aresta_cria(int inicio, int fim, float peso){
     }
     aresta* a = malloc(sizeof(aresta));
     if (a==NULL){
-        printf("Erro de alocação da aresta: falha no maloc");
+        printf("Erro de alocação da aresta: falha no malloc");
         return NULL;
     }
     a->inicio = inicio;

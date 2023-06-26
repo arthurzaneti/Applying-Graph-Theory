@@ -6,8 +6,8 @@ HEADER_DIR = headers
 
 all: $(BIN_DIR)/programa
 
-$(BIN_DIR)/programa: $(BIN_DIR)/lista.o $(BIN_DIR)/grafo.o $(BIN_DIR)/aresta.o $(BIN_DIR)/main.o $(BIN_DIR)/arq_manager.o
-	$(CC) $(CFLAGS) -o $@ $^
+$(BIN_DIR)/programa: $(BIN_DIR)/lista.o $(BIN_DIR)/grafo.o $(BIN_DIR)/aresta.o $(BIN_DIR)/main.o $(BIN_DIR)/arq_manager.o $(BIN_DIR)/calcula_distancia.o $(BIN_DIR)/caminho_ufsm.o
+	$(CC) -o $@ $^ $(CFLAGS) -lm
 
 $(BIN_DIR)/lista.o: $(SRC_DIR)/lista.c $(HEADER_DIR)/lista.h
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -24,6 +24,11 @@ $(BIN_DIR)/main.o: $(SRC_DIR)/main.c $(HEADER_DIR)/lista.h $(HEADER_DIR)/grafo.h
 $(BIN_DIR)/arq_manager.o: $(SRC_DIR)/arq_manager.c $(HEADER_DIR)/arq_manager.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BIN_DIR)/calcula_distancia.o: $(SRC_DIR)/calcula_distancia.c $(HEADER_DIR)/calcula_distancia.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BIN_DIR)/caminho_ufsm.o: $(SRC_DIR)/caminho_ufsm.c $(HEADER_DIR)/caminho_ufsm.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	rm -f $(BIN_DIR)/*.o $(BIN_DIR)/programa
-

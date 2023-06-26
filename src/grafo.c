@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string.h>
 
 #ifndef UNUSED
 #define UNUSED(x) (void)(x)
@@ -278,6 +279,19 @@ bool g_proxima_aresta(Grafo g, int* origem, int* destino, float* peso) {
     return true;
 }
 
+Grafo cria_grafo_ufsm(lista* locais, char ** tabela){
+    FILE* caminhos_file;
+    caminhos_file = fopen("/home/arthur/Desktop/grafos/info/caminhos.csv", "r");
+    if (caminhos_file == NULL) {
+        perror("Erro em cria_grafo_ufsm: falha em abrir o arquivo");
+        return NULL;
+    }
+    char buffer[12];
+    while (fgets(buffer, sizeof(buffer), caminhos_file)) {
+        
+
+    }
+}
 
 
 void grafo_testa() {
