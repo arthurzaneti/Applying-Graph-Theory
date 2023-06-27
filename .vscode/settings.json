@@ -6,6 +6,11 @@
         "lista.h": "c",
         "stdio.h": "c",
         "errno.h": "c",
-        "numbers": "c"
+        "numbers": "c",
+        "ufsm.h": "c",
+        "stdlib.h": "c",
+        "calcula_distancia.h": "c",
+        "assert.h": "c",
+        "caminho.h": "c"
     }
 }

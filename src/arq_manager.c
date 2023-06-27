@@ -39,6 +39,36 @@ lista* le_locais() {
     fclose(locais_file);
     return locais;
 }
+
+lista* le_caminhos(){
+    FILE* caminhos_file;
+    caminhos_file = fopen("/home/arthur/Desktop/grafos/info/caminhos.csv", "r");
+    if (caminhos_file == NULL) {
+        perror("Erro em le_caminhos: falha em abrir o arquivo");
+        return NULL;
+    }
+    lista* caminhos = lista_cria();
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), caminhos_file)) {
+        if (buffer[0] == '#') {
+            continue; 
+        }
+
+        char inicio[10];
+        char fim[10];
+
+        int result = sscanf(buffer, "%[^,],%[^,\n]", inicio, fim);
+        if (result == 2) {
+            caminho* caminho_lido = caminho_cria(inicio, fim);
+            lista_insere(caminhos, no_cria((void*)caminho_lido), -1);
+        }
+    }
+    fclose(caminhos_file);
+    return caminhos;
+}
+
+
+
 char** tabela_conversao_cria(lista* locais){
     char** tabela = malloc(sizeof(char*)* NUM_ELEMENTOS);
     if(tabela == NULL){
@@ -57,10 +87,47 @@ char** tabela_conversao_cria(lista* locais){
             return NULL;
         }
         strcpy(tabela[i], local_atual->nome);
-        printf("%s\n", tabela[i]);
     }
     return tabela;
 }
+
+int acha_na_tabela (char**tabela, char*nome){
+    if(tabela == NULL){
+        printf("Erro em acha_na_tabela: tabela nula");
+        return 0;
+    }
+    if(nome == NULL){
+        printf("Erro em acha_na_tabela: nome nulo");
+        return 0;
+    }
+
+    for (int i=0; tabela[i]!= NULL; i++){
+        if(strcmp(tabela[i], nome)==0){
+            return i;
+        }
+    }
+    printf("Erro em acha_na_tabela: nome não esta na tabela");
+    return 0;
+}
+void test_le_caminhos() {
+    lista* caminhos = le_caminhos();
+    
+    if (caminhos == NULL) {
+        printf("Falha ao ler os caminhos do arquivo.\n");
+        return;
+    }
+    
+    printf("Caminhos lidos:\n");
+    no* current = caminhos->primeiro;
+    while (current != NULL) {
+        caminho* caminho_atual = (caminho*)current->data;
+        printf("%s -> %s\n", caminho_atual->inicio, caminho_atual->fim);
+        current = current->prox;
+    }
+    
+    lista_destroi(caminhos);
+}
+
 
 
 
