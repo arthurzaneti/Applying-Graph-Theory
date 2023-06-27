@@ -11,6 +11,10 @@
         "stdlib.h": "c",
         "calcula_distancia.h": "c",
         "assert.h": "c",
-        "caminho.h": "c"
+        "caminho.h": "c",
+        "stdbool.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }

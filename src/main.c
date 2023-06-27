@@ -4,13 +4,11 @@
 #include "../headers/calcula_distancia.h"
 #include "../headers/caminho.h"
 #include "../headers/ufsm.h"
+#include "../headers/heap.h"
 
 #include <assert.h>
 #include <stdio.h>
 
 int main(){
-    Grafo ufsm = cria_grafo_ufsm();
-
-    
-    g_destroi(ufsm);
+    heap_testa();
 }
