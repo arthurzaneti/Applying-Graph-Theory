@@ -5,10 +5,12 @@
 #include "../headers/caminho.h"
 #include "../headers/ufsm.h"
 #include "../headers/heap.h"
+#include "../headers/floyd_warshal.h"
 
 #include <assert.h>
 #include <stdio.h>
 
 int main(){
-    heap_testa();
+    fw_testa();
+    return 0;
 }

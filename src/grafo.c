@@ -12,15 +12,6 @@
 #define ITERANDO_TODO_GRAFO 1
 #define ITERANDO_POR_LINHA 2
 
-typedef struct grafo{
-    lista* lista_de_adjacencias;
-    bool orientado;
-    no* aresta_atual;
-    no* lista_atual;
-    int iteracao;
-    int num_arestas;
-}grafo;
-
 
 Grafo g_cria(int tamanho, bool orientado){
     UNUSED(tamanho);
@@ -245,6 +236,7 @@ static void para_iteracao (grafo*g){
     g->lista_atual = NULL;
     g->iteracao = NAO_ITERANDO;
 }
+
 bool g_proxima_aresta(Grafo g, int* origem, int* destino, float* peso) {
     if (g == NULL) {
         printf("Erro em iteração de arestas: grafo nulo\n");

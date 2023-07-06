@@ -3,6 +3,15 @@
 #include "lista.h"
 
 //defino um ponteiro para grafo como Grafo
+typedef struct grafo{
+    lista* lista_de_adjacencias;
+    bool orientado;
+    no* aresta_atual;
+    no* lista_atual;
+    int iteracao;
+    int num_arestas;
+}grafo;
+
 typedef struct grafo* Grafo;
 
 Grafo g_cria(int tamanho, bool orientado);
