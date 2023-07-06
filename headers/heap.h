@@ -2,20 +2,26 @@
 #define HEAP_H
 
 #include "lista.h"
+#include "aresta.h"
 
-typedef struct no_heap {
-    aresta* aresta_heap;
-    struct no_heap* prox;
+typedef struct _no_heap no_heap;
+
+typedef struct _heap {
+    no_heap * primeiro;
+    no_heap * ultimo;
+    int num_elementos;
+}heap;
+
+typedef struct _no_heap{
+    aresta* Aresta;
+    int pos;
+    no_heap * prox;
+    no_heap * ant;
 } no_heap;
-
-typedef struct {
-    no_heap* primeiro;
-    int tamanho;
-} heap;
 
 heap* heap_cria();
 void heap_insere(heap* h, aresta* a);
-double remover_minimo(heap* h);
+aresta* heap_remove(heap* h);
 void heap_testa();
 
 #endif 
