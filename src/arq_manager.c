@@ -68,6 +68,91 @@ lista* le_caminhos(){
 }
 
 
+char **le_visita() {
+    FILE *visita_file;
+    visita_file = fopen("/home/arthur/Desktop/grafos/info/visita.csv", "r");
+    if (visita_file == NULL) {
+        perror("Erro em le_visita: falha em abrir o arquivo");
+        return NULL;
+    }
+
+    int lines_count = 0;
+    char ch;
+    while ((ch = fgetc(visita_file)) != EOF) {
+        if (ch == '\n') {
+            lines_count++;
+        }
+    }
+
+    fseek(visita_file, 0, SEEK_SET);
+
+    char **tabela = (char **)malloc((lines_count + 1) * sizeof(char *));
+    if (tabela == NULL) {
+        perror("Erro em le_visita: falha em alocar memória");
+        fclose(visita_file);
+        return NULL;
+    }
+
+    char line[10]; 
+    int i = 0;
+    while (fgets(line, sizeof(line), visita_file) != NULL) {
+        line[strcspn(line, "\n")] = '\0';
+
+        tabela[i] = (char *)malloc((strlen(line) + 1) * sizeof(char));
+        if (tabela[i] == NULL) {
+            perror("Erro em le_visita: falha em alocar memória");
+            fclose(visita_file);
+
+            for (int j = 0; j < i; j++) {
+                free(tabela[j]);
+            }
+            free(tabela);
+
+            return NULL;
+        }
+        strcpy(tabela[i], line);
+        i++;
+    }
+
+    tabela[i] = NULL;
+
+    fclose(visita_file);
+
+    return tabela;
+}
+
+int conta_visitas(char** visitas){
+    int contador =0;
+    for (int i = 0; visitas[i] != NULL; i++) {
+        contador++;
+    }
+    return contador;
+}
+
+int* converte_visitas(char **visitas, char **tabela) {
+    if (visitas == NULL) {
+        printf("Erro em converte_visitas: tabela de visitas é nula\n");
+        return NULL;
+    }
+    if (tabela == NULL) {
+        printf("Erro em converte_visitas: tabela de conversões é nula\n");
+        return NULL;
+    }
+
+    int n_visitas = conta_visitas(visitas);
+    int *visitas_convertidas = (int *)malloc(n_visitas * sizeof(int));
+    if (visitas_convertidas == NULL) {
+        printf("Erro em converte_visitas: falha em alocar memória\n");
+        return NULL;
+    }
+
+    for (int i = 0; i < n_visitas; i++) {
+        visitas_convertidas[i] = acha_na_tabela(tabela, visitas[i]);
+    }
+
+    return visitas_convertidas;
+}
+
 
 char** tabela_conversao_cria(lista* locais){
     char** tabela = malloc(sizeof(char*)* NUM_ELEMENTOS);

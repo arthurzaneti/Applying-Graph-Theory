@@ -9,14 +9,22 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(){
     Grafo ufsm = cria_grafo_ufsm();
 
     matrizes * resultado_floyd_warshal = algoritmo_floyd_warshal(ufsm);
 
-    printa_matriz_adjacencias(resultado_floyd_warshal->matriz_de_adjacencias, resultado_floyd_warshal->n_valores);
-    printa_matriz_caminho_mais_curto(resultado_floyd_warshal->matriz_caminho_mais_curto, resultado_floyd_warshal->n_valores);
+    char **visitas = le_visita();
+
+    char ** tabela = tabela_conversao_cria(le_locais());
+    
+    int **visitas_convertidas = converte_visitas(visitas, tabela);
+
+    for(int i =0; i< conta_visitas(visitas); i++){
+        printf("%d \n", *visitas_convertidas[i]);
+    }
     
     return 0;
 }
