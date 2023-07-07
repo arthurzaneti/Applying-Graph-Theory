@@ -38,10 +38,14 @@ caminho* caminho_cria(char* inicio, char* fim) {
 
 caminho *caminho_cria_vazio(){
     caminho* c = malloc(sizeof(caminho));
-    if (c==NULL){
-        printf("Erro de alocação de caminho: falha no malloc");
+    if (c == NULL) {
+        printf("Erro de alocação de caminho: falha no malloc\n");
         return NULL;
     }
+    
+    c->inicio = NULL;
+    c->fim = NULL;
+
     return c;
 }
 
@@ -93,20 +97,4 @@ lista* coloca_peso_caminhos (lista* caminhos, lista* locais, char** tabela){
 }
 
 void caminho_testa() {
-    
-    char inicio[] = "r001";
-    char fim[] = "cam6";
-
-    caminho* c = caminho_cria(inicio, fim);
-    if (c == NULL) {
-        printf("Falha na criação do caminho\n");
-        return;
-    }
-
-    printf("Inicio: %s\n", c->inicio);
-    printf("Fim: %s\n", c->fim);
-
-    caminho_destroi(c);
-    printf("caminho destruído.\n");
 }
-

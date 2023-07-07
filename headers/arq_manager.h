@@ -20,7 +20,7 @@ typedef struct _local {
 
 lista* le_locais();
 lista* le_caminhos();
-char** tabela_conversao_cria(lista* l);
+char** tabela_conversao_cria(lista* locais);
 int acha_na_tabela (char**tabela, char*nome);
 void test_le_caminhos();
 

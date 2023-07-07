@@ -11,6 +11,12 @@
 #include <stdio.h>
 
 int main(){
-    fw_testa();
+    Grafo ufsm = cria_grafo_ufsm();
+
+    matrizes * resultado_floyd_warshal = algoritmo_floyd_warshal(ufsm);
+
+    printa_matriz_adjacencias(resultado_floyd_warshal->matriz_de_adjacencias, resultado_floyd_warshal->n_valores);
+    printa_matriz_caminho_mais_curto(resultado_floyd_warshal->matriz_caminho_mais_curto, resultado_floyd_warshal->n_valores);
+    
     return 0;
 }

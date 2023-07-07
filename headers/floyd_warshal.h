@@ -10,6 +10,11 @@ typedef struct matrizes {
 
 matrizes* algoritmo_floyd_warshal(grafo* g);
 
+void printa_matriz_adjacencias(float ** matriz, int n);
+void printa_matriz_caminho_mais_curto(int** matriz, int n);
+
+void matrizes_destroi(matrizes* m);
+
 void fw_testa();
 
 #endif

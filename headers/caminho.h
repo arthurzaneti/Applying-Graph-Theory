@@ -17,5 +17,6 @@ caminho* caminho_cria_vazio();
 local* acha_local (lista* locais, char*nome);
 lista* coloca_peso_caminhos (lista* caminhos, lista* locais, char** tabela);
 
+void caminho_testa();
 
 #endif
