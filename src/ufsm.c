@@ -7,7 +7,9 @@
 
 Grafo cria_grafo_ufsm(){
     lista* locais = le_locais();
+    
     lista* caminhos = le_caminhos();
+    
     char** tabela =  tabela_conversao_cria(locais);
     lista* arestas = coloca_peso_caminhos(caminhos, locais, tabela);
 

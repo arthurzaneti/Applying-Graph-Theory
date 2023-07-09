@@ -3,6 +3,9 @@
 
 #include "grafo.h"
 #include "caminho.h"
+#include "arq_manager.h"
+#include "caminho.h"
+#include "aresta.h"
 
 Grafo cria_grafo_ufsm();
 

@@ -23,7 +23,7 @@ void g_destroi(Grafo self);
 int g_nvertices(Grafo self);
 
 // insere uma aresta no grafo (ou altera o peso de uma aresta já existente)
-void g_ins_aresta(Grafo self, int origem, int destino, float peso);
+void g_ins_aresta(Grafo self, int origem, int destino, double peso);
 
 // remove uma aresta do grafo
 void g_rem_aresta(Grafo self, int origem, int destino);
@@ -40,7 +40,7 @@ void g_arestas_que_partem(Grafo self, int origem);
 // retorna true se ok ou false se não tem mais arestas ou se não foi iniciada uma consulta
 // cada ponteiro pode ser NULL, para o caso de não se estar interessado na informação associada
 // não se deve inserir ou remover arestas no grafo com uma consulta em andamento
-bool g_proxima_aresta(Grafo g, int* origem, int* destino, float* peso);
+bool g_proxima_aresta(Grafo g, int* origem, int* destino, double* peso);
 
 void grafo_testa();
 

@@ -4,7 +4,7 @@
 # include <assert.h>
 
 
-aresta *aresta_cria(int inicio, int fim, float peso){
+aresta *aresta_cria(int inicio, int fim, double peso){
     if (inicio <0|| fim <0){
         printf("Erro na criação da aresta: inicio ou fim menores que 0");
         return NULL;
@@ -30,7 +30,7 @@ void aresta_destroi(aresta* a){
 void aresta_testa(){
     int c = 1;
     int  a = 1;
-    float peso = 10;
+    double peso = 10;
     aresta* aresta_teste = aresta_cria(c, a, peso);
     assert(aresta_teste->inicio ==1);
     assert(aresta_teste->fim ==1);

@@ -12,7 +12,7 @@ static matrizes *matrizes_cria(int n) {
     matrizes *m = malloc(sizeof(struct matrizes));
     m->n_valores = n;
 
-    m->matriz_de_adjacencias = malloc(n * sizeof(float*));
+    m->matriz_de_adjacencias = malloc(n * sizeof(double*));
     for (int i = 0; i < n; ++i) {
         m->matriz_de_adjacencias[i] = malloc(n * sizeof(int));
     }
@@ -41,7 +41,7 @@ void matrizes_destroi(matrizes* m) {
     free(m);
 }
 
-void printa_matriz_adjacencias(float** matriz, int n) {
+void printa_matriz_adjacencias(double** matriz, int n) {
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             if(matriz[i][j] == INFINITO){
@@ -66,18 +66,18 @@ void printa_matriz_caminho_mais_curto(int** matriz, int n) {
     }
 }
 
-static float** pega_matriz_adjacencia (grafo* g) {
+static double** pega_matriz_adjacencia (grafo* g) {
 
     int num_vertices = g->lista_de_adjacencias->num_elementos;
 
-    float** matriz_adjacencia = malloc(num_vertices * sizeof(float*));
+    double** matriz_adjacencia = malloc(num_vertices * sizeof(double*));
     if(matriz_adjacencia == NULL){
         printf("Falha no malloc: Erro em pega matriz adjacencia");
         return NULL;
     }
 
     for (int i = 0; i < num_vertices; ++i) {
-        matriz_adjacencia[i] = calloc(num_vertices, sizeof(float));
+        matriz_adjacencia[i] = calloc(num_vertices, sizeof(double));
         if(matriz_adjacencia[i] == NULL){
             printf("Falha no calloc: Erro em pega matriz adjacencia");
         return NULL;
@@ -92,7 +92,7 @@ static float** pega_matriz_adjacencia (grafo* g) {
     g_arestas(g);
 
     int origem, destino;
-    float peso;
+    double peso;
 
     while(g_proxima_aresta(g, &origem, &destino, &peso)){
         matriz_adjacencia[origem][destino] = peso;
@@ -136,7 +136,7 @@ static int** pega_matriz_caminho_mais_curto(grafo* g){
     g_arestas(g);
 
     int origem, destino;
-    float peso;
+    double peso;
 
     while(g_proxima_aresta(g, &origem, &destino, &peso)){
         matriz_sp[origem][destino] = origem;
@@ -234,7 +234,7 @@ static int* pega_caminho(matrizes* m, int saida, int destino) {
 }
 
 static int determina_proximo(matrizes* m, int* visitas, int* visitados, int atual){
-    float* linha_pesos = m->matriz_de_adjacencias[atual];
+    double* linha_pesos = m->matriz_de_adjacencias[atual];
     int melhor = -1;
     double melhor_peso = INFINITO_DOUBLE;
 

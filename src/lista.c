@@ -225,7 +225,7 @@ void lista_testa() {
     assert(l->primeiro == no_int);
     assert(l->ultimo == no_char);
 
-    float c = 3.14;
+    double c = 3.14;
     void* ptrc = &c;
     no* no_float = no_cria(ptrc);
     lista_insere(l, no_float, 1);
@@ -255,7 +255,7 @@ void lista_testa() {
 
     no* retrieved_1 = lista_pega_elemento(l, 1);
     assert(retrieved_1 == no_float);
-    assert(*(float*)(retrieved_1->data) == c);
+    assert(*(double*)(retrieved_1->data) == c);
 
     no* retrieved_2 = lista_pega_elemento(l, 2);
     assert(retrieved_2 == no_char);
@@ -283,7 +283,7 @@ void lista_testa() {
 
     no* retrieved_neg_4 = lista_pega_elemento(l, -4);
     assert(retrieved_neg_4 == no_float);
-    assert(*(float*)(retrieved_neg_4->data) == c);
+    assert(*(double*)(retrieved_neg_4->data) == c);
 
     no* retrieved_neg_5 = lista_pega_elemento(l, -5);
     assert(retrieved_neg_5 == no_int);

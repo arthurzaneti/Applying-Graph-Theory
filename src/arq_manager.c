@@ -22,7 +22,7 @@ lista* le_locais() {
         return NULL;
     }
 
-    char buffer[TAMANHO_MAX_LINHA]; 
+    char buffer[256]; 
     lista* locais = lista_cria();
 
     bool primeira_iteracao = true;

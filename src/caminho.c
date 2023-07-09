@@ -87,9 +87,8 @@ lista* coloca_peso_caminhos (lista* caminhos, lista* locais, char** tabela){
         caminho* caminho_atual = (caminho*)no_caminho_atual->data;
         local* local1 = acha_local(locais, caminho_atual->inicio);
         local* local2 = acha_local(locais, caminho_atual->fim);
-        double distancia = calcula_distancia(local1->latitude, local1->longitude, local2->latitude, local2->longitude);
         
-        aresta* caminho_pesado = aresta_cria(acha_na_tabela(tabela, local1->nome), acha_na_tabela(tabela, local2->nome), distancia);
+        aresta* caminho_pesado = aresta_cria(acha_na_tabela(tabela, local1->nome),acha_na_tabela(tabela, local2->nome), calcula_distancia(local1->latitude, local1->longitude, local2->latitude, local2->longitude));
         lista_insere(arestas, no_cria((void*)caminho_pesado), -1);
         no_caminho_atual = no_caminho_atual->prox;
     }
