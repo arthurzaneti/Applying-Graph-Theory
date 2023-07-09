@@ -194,6 +194,7 @@ int acha_na_tabela (char**tabela, char*nome){
     printf("Erro em acha_na_tabela: nome não esta na tabela");
     return 0;
 }
+
 void test_le_caminhos() {
     lista* caminhos = le_caminhos();
     

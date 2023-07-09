@@ -28,8 +28,15 @@ no* no_cria(void*data){
     return n;
 }
 
-void lista_insere_inicio_aux(lista* l, no* elem){
-    if(l->primeiro ==NULL) lista_insere_vazia_aux(l, elem);
+static void lista_insere_vazia(lista*l, no* elem){
+    l->ultimo = elem;
+    l->primeiro = elem;
+    elem->prox = NULL;
+    elem->ant =NULL;
+}
+
+static void lista_insere_inicio(lista* l, no* elem){
+    if(l->primeiro ==NULL) lista_insere_vazia(l, elem);
     else{
         elem->ant = NULL;
         elem->prox= l->primeiro;
@@ -38,8 +45,8 @@ void lista_insere_inicio_aux(lista* l, no* elem){
     }
 }
 
-void lista_insere_fim_aux(lista*l, no* elem){
-    if(l->primeiro ==NULL) lista_insere_vazia_aux(l, elem);
+static void lista_insere_fim(lista*l, no* elem){
+    if(l->primeiro ==NULL) lista_insere_vazia(l, elem);
     else{
 
         elem->ant = l->ultimo;
@@ -47,13 +54,6 @@ void lista_insere_fim_aux(lista*l, no* elem){
         elem->ant->prox = elem;
         l->ultimo = elem;
     }
-}
-
-void lista_insere_vazia_aux(lista*l, no* elem){
-    l->ultimo = elem;
-    l->primeiro = elem;
-    elem->prox = NULL;
-    elem->ant =NULL;
 }
 
 void lista_insere(lista*l, no* elem, int pos){
@@ -74,10 +74,10 @@ void lista_insere(lista*l, no* elem, int pos){
     }
     else{
         if (pos==0) {
-            lista_insere_inicio_aux(l, elem);
+            lista_insere_inicio(l, elem);
         }
         else if (pos==l->num_elementos) {
-            lista_insere_fim_aux(l, elem);
+            lista_insere_fim(l, elem);
         }
         else{
             no *no_atual = l->primeiro;
@@ -105,7 +105,7 @@ static void* lista_remove_1_elem(lista* l){
     l->ultimo = NULL;
     return (valor_do_no);
 }
-void* lista_remove_inicio_aux(lista*l){
+static void* lista_remove_inicio(lista*l){
     if (l->num_elementos ==1) return  lista_remove_1_elem(l);
     no* no_remover = l->primeiro;
     no_remover->prox->ant = NULL;
@@ -116,7 +116,7 @@ void* lista_remove_inicio_aux(lista*l){
     return (valor_do_no);
 }
 
-void* lista_remove_fim_aux(lista*l){
+static void* lista_remove_fim(lista*l){
     if (l->num_elementos ==1) return lista_remove_1_elem(l);
     no* no_remover = l->ultimo;
     no_remover->ant->prox = NULL;
@@ -127,26 +127,7 @@ void* lista_remove_fim_aux(lista*l){
     return (valor_do_no);
 }
 
-void* lista_remove(lista *l, int pos){
-    if(!verifica_remoção_aux(l,pos)) return NULL;
-    if (pos <0) pos += l->num_elementos;
-    if (pos==0)return lista_remove_inicio_aux(l);
-    if (pos==l->num_elementos -1) return lista_remove_fim_aux(l);
-    int contador = 0;
-    no* no_atual = l->primeiro;
-    while (contador<pos){
-        no_atual = no_atual->prox;
-        contador++;
-    } 
-    no_atual->ant->prox = no_atual->prox;
-    no_atual->prox->ant = no_atual->ant;
-    void* valor_do_no = no_atual->data;
-    free(no_atual);
-    l->num_elementos--;   
-    return (valor_do_no);
-}
-
-bool verifica_remoção_aux(lista*l, int pos){
+static bool verifica_remoção(lista*l, int pos){
     if(l==NULL){
         printf("Erro de remoção: Lista nula");
         return false;
@@ -165,6 +146,25 @@ bool verifica_remoção_aux(lista*l, int pos){
         return false;
     }
     return true;
+}
+
+void* lista_remove(lista *l, int pos){
+    if(!verifica_remoção(l,pos)) return NULL;
+    if (pos <0) pos += l->num_elementos;
+    if (pos==0)return lista_remove_inicio(l);
+    if (pos==l->num_elementos -1) return lista_remove_fim(l);
+    int contador = 0;
+    no* no_atual = l->primeiro;
+    while (contador<pos){
+        no_atual = no_atual->prox;
+        contador++;
+    } 
+    no_atual->ant->prox = no_atual->prox;
+    no_atual->prox->ant = no_atual->ant;
+    void* valor_do_no = no_atual->data;
+    free(no_atual);
+    l->num_elementos--;   
+    return (valor_do_no);
 }
 
 void lista_destroi(lista*l){

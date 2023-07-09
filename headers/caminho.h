@@ -6,6 +6,8 @@
 #include "calcula_distancia.h"
 #include "aresta.h"
 
+//estrutura auxiliar para a leitura do arquivo caminhos.csv, é basicamente uma aresta sem peso
+
 typedef struct _caminho{
     char* inicio;
     char* fim;

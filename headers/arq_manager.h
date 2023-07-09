@@ -4,7 +4,7 @@
 #include "grafo.h"
 #include "lista.h"
 
-
+//agrupamento de várias funções que lidam com os arquivos
 #define TAMANHO_MAX_NOME 5
 #define TAMANHO_MAX_LINHA 256
 #define NUM_ELEMENTOS 35

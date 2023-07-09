@@ -1,6 +1,8 @@
 #ifndef _ARESTA_H_
 #define _ARESTA_H_
 
+//arestas do grafo
+
 typedef struct _aresta{
     int inicio;
     int fim;

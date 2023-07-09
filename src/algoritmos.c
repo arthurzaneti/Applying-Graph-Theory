@@ -189,7 +189,7 @@ static int* array_bool(int n){
         array_bool[i] = 0;
         i++;
     }
-    array_bool[i+1] = -1;
+    array_bool[i] = -1;
     return array_bool;
 }
 
@@ -249,13 +249,16 @@ static int determina_proximo(matrizes* m, int* visitas, int* visitados, int atua
             continue;
         }
         else{
-            if(linha_pesos[visitas[i]] < melhor_peso){
+            double atual = linha_pesos[visitas[i]];
+            if(atual < melhor_peso){
                 melhor_peso = linha_pesos[visitas[i]];
                 melhor = visitas[i];
             }
         }
     }
-
+    if (melhor == -1){
+        printf("Erro em determina proximo: função acessada com todos elementos visitados");
+    }
     return melhor;
 }
 
@@ -267,8 +270,8 @@ static bool tem_nao_visitado(int * visitados){
     int i = 0;
 
     while(true){
-        if(visitados[i] == -1) return false;
-        if(visitados[i] == 0) return true;
+        if(visitados[i] == -1) return 0;
+        if(visitados[i] == 0) return 1;
         i++;
     }
     printf("Erro inesperado em tem nao visitados");

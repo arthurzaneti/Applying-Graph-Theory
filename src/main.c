@@ -4,7 +4,6 @@
 #include "../headers/calcula_distancia.h"
 #include "../headers/caminho.h"
 #include "../headers/ufsm.h"
-#include "../headers/heap.h"
 #include "../headers/algoritmos.h"
 #include "../headers/bbcode.h"
 

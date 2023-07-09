@@ -1,8 +1,11 @@
 #ifndef _LISTA_H_
 #define _LISTA_H_
 #include "aresta.h"
-
 #include <stdbool.h>
+
+//implementação de lista duplamente encadeada generica, ou seja,  pointers para void*.
+//alguns campos estão aqui porque foram usados para implementar grafos depois, mas podem ser removidos
+
 typedef struct no no;
 typedef struct lista{
     no* primeiro;
@@ -19,17 +22,11 @@ typedef struct no{
 
 lista* lista_cria();
 no* no_cria(void*data);
-void lista_insere_inicio_aux(lista* l, no* elem);
-void lista_insere_fim_aux(lista*l, no* elem);
-void lista_insere_vazia_aux(lista*l, no* elem);
-void lista_insere(lista*l, no* elem, int pos);
 
-void* lista_remove_inicio_aux(lista*l);
-void* lista_remove_fim_aux(lista*l);
+void lista_insere(lista*l, no* elem, int pos);
 void* lista_remove(lista *l, int pos);
-void lista_destroi(lista *l);
-bool verifica_remoção_aux(lista*l, int pos);
 no* lista_pega_elemento(lista* l, int pos);
-void lista_testa();
+
+void lista_destroi(lista *l);
 
 #endif

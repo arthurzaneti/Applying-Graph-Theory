@@ -2,6 +2,10 @@
 #define _ALGORITMOS_H_
 
 #include "../headers/grafo.h"
+
+//Onde o algoritmo de Floyd-Warshal foi utilizado para calculara menor distância entre os pontos
+//Também é aqui que o resultado do algoritmo Floyd-Warshal é utilizado para produzir a ordem de visita
+
 typedef struct matrizes {
     double** matriz_de_adjacencias;
     int** matriz_caminho_mais_curto;
