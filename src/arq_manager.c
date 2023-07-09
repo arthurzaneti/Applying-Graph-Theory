@@ -140,7 +140,7 @@ int* converte_visitas(char **visitas, char **tabela) {
     }
 
     int n_visitas = conta_visitas(visitas);
-    int *visitas_convertidas = (int *)malloc(n_visitas * sizeof(int));
+    int *visitas_convertidas = (int *)malloc((n_visitas+1) * sizeof(int) );
     if (visitas_convertidas == NULL) {
         printf("Erro em converte_visitas: falha em alocar memória\n");
         return NULL;
@@ -149,7 +149,7 @@ int* converte_visitas(char **visitas, char **tabela) {
     for (int i = 0; i < n_visitas; i++) {
         visitas_convertidas[i] = acha_na_tabela(tabela, visitas[i]);
     }
-
+    visitas_convertidas[n_visitas] = -1;
     return visitas_convertidas;
 }
 

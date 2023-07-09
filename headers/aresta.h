@@ -4,7 +4,7 @@
 typedef struct _aresta{
     int inicio;
     int fim;
-    float peso;
+    double peso;
 }aresta;
 
 

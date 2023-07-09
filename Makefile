@@ -6,7 +6,7 @@ HEADER_DIR = headers
 
 all: $(BIN_DIR)/programa
 
-$(BIN_DIR)/programa: $(BIN_DIR)/lista.o $(BIN_DIR)/grafo.o $(BIN_DIR)/aresta.o $(BIN_DIR)/main.o $(BIN_DIR)/arq_manager.o $(BIN_DIR)/calcula_distancia.o $(BIN_DIR)/caminho.o $(BIN_DIR)/ufsm.o $(BIN_DIR)/heap.o $(BIN_DIR)/floyd_warshal.o
+$(BIN_DIR)/programa: $(BIN_DIR)/lista.o $(BIN_DIR)/grafo.o $(BIN_DIR)/aresta.o $(BIN_DIR)/main.o $(BIN_DIR)/arq_manager.o $(BIN_DIR)/calcula_distancia.o $(BIN_DIR)/caminho.o $(BIN_DIR)/ufsm.o $(BIN_DIR)/heap.o $(BIN_DIR)/algoritmos.o
 	$(CC) -o $@ $^ $(CFLAGS) -lm
 
 $(BIN_DIR)/lista.o: $(SRC_DIR)/lista.c $(HEADER_DIR)/lista.h
@@ -36,7 +36,7 @@ $(BIN_DIR)/ufsm.o: $(SRC_DIR)/ufsm.c $(HEADER_DIR)/ufsm.h
 $(BIN_DIR)/heap.o: $(SRC_DIR)/heap.c $(HEADER_DIR)/heap.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR)/floyd_warshal.o: $(SRC_DIR)/floyd_warshal.c $(HEADER_DIR)/floyd_warshal.h
+$(BIN_DIR)/algoritmos.o: $(SRC_DIR)/algoritmos.c $(HEADER_DIR)/algoritmos.h
 	$(CC) $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(BIN_DIR)/*.o $(BIN_DIR)/programa
