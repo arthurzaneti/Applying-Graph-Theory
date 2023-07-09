@@ -26,17 +26,23 @@ static matrizes *matrizes_cria(int n) {
 }
 
 void matrizes_destroi(matrizes* m) {
-    int n = m->n_valores;
-
-    for (int i = 0; i < n; ++i) {
-        free(m->matriz_de_adjacencias[i]);
+    if(m == NULL){
+        printf("Erro em matrizes destroi, matrizes nulas");
+        return; 
     }
-    free(m->matriz_de_adjacencias);
-
-    for (int i = 0; i < n; ++i) {
-        free(m->matriz_caminho_mais_curto[i]);
+    if(m->matriz_de_adjacencias != NULL){
+        for (int i = 0; i < m->n_valores; i++) {
+            free(m->matriz_de_adjacencias[i]);
+        }
+        free(m->matriz_de_adjacencias);
     }
-    free(m->matriz_caminho_mais_curto);
+
+    if (m->matriz_caminho_mais_curto != NULL){
+        for (int i = 0; i < m->n_valores; i++) {
+            free(m->matriz_caminho_mais_curto[i]);
+        }
+        free(m->matriz_caminho_mais_curto);
+    }
 
     free(m);
 }

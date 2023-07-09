@@ -6,6 +6,7 @@
 #include "../headers/ufsm.h"
 #include "../headers/heap.h"
 #include "../headers/algoritmos.h"
+#include "../headers/bbcode.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -23,13 +24,22 @@ int main(){
     
     int *visitas_convertidas = converte_visitas(visitas, tabela);
 
-    int*ordem = ordem_visita(resultado_floyd_warshal, visitas_convertidas);
-    int i = 0;
-    while(ordem[i] !=-1){
-        printf("%d \n", ordem[i]);
-        i++;
+    int *ordem = ordem_visita(resultado_floyd_warshal, visitas_convertidas);
+
+    cria_arq_bbcode(ordem, locais);
+
+    lista_destroi(locais);
+    g_destroi(ufsm);
+    for(int i =0; i < NUM_ELEMENTOS; i++){
+        free(tabela[i]);
     }
-    printa_matriz_adjacencias(resultado_floyd_warshal->matriz_de_adjacencias, resultado_floyd_warshal->n_valores);
+    for(int i =0; visitas[i] != NULL; i++){
+        free(visitas[i]);
+    }
+    free(visitas);
+    free(ordem);
+    free(visitas_convertidas);
+    matrizes_destroi(resultado_floyd_warshal);
     
     return 0;
 }

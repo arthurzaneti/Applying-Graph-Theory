@@ -182,14 +182,14 @@ void lista_destroi(lista*l){
 }
 no* lista_pega_elemento(lista* l, int pos){
     if(l==NULL){
-        printf("Erro em pega_elemento: lista nula");
+        printf("Erro em pega_elemento: lista nula \n");
         return NULL;
     }
     if (pos < 0){
         pos += l->num_elementos;
     }
     if (pos <0 || pos >= l->num_elementos){
-        printf("Erro em pega_elemento: indice fora de alcance");
+        printf("Erro em pega_elemento: indice fora de alcance\n");
         return NULL;
     }
     no* no_atual = l->primeiro;
@@ -202,7 +202,7 @@ no* lista_pega_elemento(lista* l, int pos){
         contador++;
         no_atual=no_atual->prox;
     }
-    printf("Erro inesperado em pega elemento");
+    printf("Erro inesperado em acessar a posição %d da lista com %d elementos\n", pos, l->num_elementos);
     return NULL;
 }
 
